@@ -7,6 +7,8 @@
   <meta name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=no" />
   <title>Magic Life</title>
   <script type="text/javascript" src="elm.js"></script>
+  <link rel="stylesheet" href="fonts.css" type="text/css" />
+  <link rel="stylesheet" href="animations.css" type="text/css" />
   <link rel="stylesheet" href="site.css" type="text/css" />
 </head>
 
@@ -14,7 +16,47 @@
 </body>
 
 <script type="text/javascript">
-  var app = Elm.fullscreen(Elm.Main, { android:"" });
+  var initialState  = { names:['', ''], colors:['blue','purple'] };
+  var storedState   = localStorage.getItem('state');
+  var startingState = storedState ? JSON.parse(storedState) : initialState;
+
+  var app = Elm.fullscreen(Elm.Main, { getStorage:startingState });
+
+  app.ports.focus.subscribe(function(x) {
+
+    if (x !== null) {
+      
+      switch (x.tipe) {
+        case "focus":
+          var node = document.getElementById(x.id);
+          /*node.focus();*/
+          /*node.select();*/
+          break;
+        case "blur":
+          if (x.id == "") {
+            var nodes = document.getElementsByTagName('input');
+            for (var i = 0; i < nodes.length; ++i) {
+              nodes[i].blur();
+            }
+          } else {
+            document.getElementById(x.id).blur();
+          }
+          break;
+        case "name":
+          storedState = localStorage.getItem('state');
+          var state = storedState ? JSON.parse(storedState) : initialState;
+          state.names[x.num] = x.name;
+          localStorage.setItem('state', JSON.stringify(state));
+          break;
+        case "color":
+          storedState = localStorage.getItem('state');
+          var state = storedState ? JSON.parse(storedState) : initialState;
+          state.colors[x.num] = x.color;
+          localStorage.setItem('state', JSON.stringify(state));
+          break;
+      }
+    }
+  });
 
   function callback(s) {
     var x = eval('(' + s + ')');
