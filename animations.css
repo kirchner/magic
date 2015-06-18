@@ -1,27 +1,27 @@
 div.animate-open {
   top: 0;
-  animation-duration: 0.3s;
+  animation-duration: 50ms;
   animation-iteration-count: 1;
   animation-name: open;
 }
 
 div.animate-close {
   top: -100%;
-  animation-duration: 0.3s;
+  animation-duration: 50ms;
   animation-iteration-count: 1;
   animation-name: close;
 }
 
 div.animate-openprime {
   top: 0;
-  animation-duration: 0.3s;
+  animation-duration: 50ms;
   animation-iteration-count: 1;
   animation-name: openprime;
 }
 
 div.animate-closeprime {
   top: 100%;
-  animation-duration: 0.3s;
+  animation-duration: 50ms;
   animation-iteration-count: 1;
   animation-name: closeprime;
 }
