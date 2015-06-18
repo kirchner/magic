@@ -1,9 +1,0 @@
-{
-    "name": "Magic Counter",
-    "package_path": "http://kirchner.github.io/magic/package.zip",
-    "version": "0.1",
-    "developer": {
-        "name": "A. Foremny",
-        "url": "http://github.com/aforemny/magic"
-    }
-}
